@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Latihan Vue js</title>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Nama Barang</th>
+                    <th>Merk</th>
+                    <th>Tipe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="barang, index in daftarBarang" :key="index">
+                    <td>[index+1]</td>
+                    <td>[barang.namaBarang]</td>
+                    <td>[barang.merk]</td>
+                    <td>[barang.tipe]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return{
+                    barang:{
+                        'namaBarang':'',
+                        'merk':'',
+                        'tipe':''
+                    },
+                    daftarBarang: []
+                }
+            },
+            async created(){
+                await this.getDaftarBarang()
+            },
+            methods:{
+                async sendRequest(url, method, data){
+                    const myHeaders = new Headers({
+                        'Content-Type': 'application/json',
+                        'X-Requested-Width':'XMLHttpRequest'
+                    })
+
+                    const response = await fetch(url,{
+                        method: method,
+                        headers: myHeaders,
+                        body: data
+                    })
+                    return response
+                },
+                async getDaftarBarang(){
+                    const response = await this.sendRequest(window.location, 'get')
+                    this.daftarBarang = await response.json()
+                }
+            },
+            delimiters: ['[',']']
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
