@@ -22,13 +22,7 @@ def create_app():
 
     @app.route('/')
     def home():
-        daftarBarang = [
-            {'id':1, 'namaBarang':'Komputer', 'merk':'Dell', 'tipe':'Inspiron'},
-            {'id':2, 'namaBarang':'Laptop', 'merk':'Asus', 'tipe':'x450j'},
-            {'id':3, 'namaBarang':'Komputer', 'merk':'Acer', 'tipe':'Smallthink'},
-            {'id':4, 'namaBarang':'Komputer', 'merk':'Lenovo', 'tipe':'light'},
-            {'id':5, 'namaBarang':'Laptop', 'merk':'HP', 'tipe':'Notebook 14'}
-        ]
+        daftarBarang = Barang.query.all()
         if request.headers.get('X-Requested-Width') =='XMLHttpRequest':
             return jsonify(daftarBarang), 200
         return render_template('latihan.html')
