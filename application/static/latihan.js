@@ -6,7 +6,9 @@ const TaskApp={
             barang:{
                 'namaBarang':'',
                 'merk':'',
-                'tipe':''
+                'tipe':'',
+                'sn':'',
+                'status':''
             },
             daftarBarang: []
         }
@@ -31,6 +33,16 @@ const TaskApp={
         async getDaftarBarang(){
             const response = await this.sendRequest(window.location, 'get')
             this.daftarBarang = await response.json()
+        },
+        async addBarang(){
+            await this.getDaftarBarang()
+            await this.sendRequest(window.location + 'add', 'post', JSON.stringify(this.barang))
+            await this.getDaftarBarang()
+            this.barang.namaBarang = ''
+            this.barang.merk = ''
+            this.barang.tipe = ''
+            this.barang.sn = ''
+            this.barang.status = ''
         }
     },
     delimiters: ['[',']']
