@@ -6,7 +6,10 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Latihan Vue js</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css')}}"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 <body>
     <div class="container-fluid bg-info text-white text-center p-4">
@@ -26,8 +29,57 @@
                         </li>
                     </ul>
             </div>
-            <div class="col-10 p-4 bg-light">
+            <div class="col-10 p-4 bg-light">                
                 <h2>Daftar Barang</h2>
+
+                <form @submit.prevent = "addBarang">
+                    <form-group>
+                        <div class="row p-1">
+                            <div class="col-4">
+                                <label for="" class="col-form-label">Nama barang</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" v-model="barang.namaBarang" title="Nama barang">                        
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4">
+                                <label for="" class="col-form-label">Merk</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" v-model="barang.merk" title="Merk">                        
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4">
+                                <label for="" class="col-form-label">Tipe</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" v-model="barang.tipe" title="tipe">                        
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4">
+                                <label for="" class="col-form-label">SN</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" v-model="barang.sn" title="sn">                        
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4">
+                                <label for="" class="col-form-label">Status</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" v-model="barang.status" title="status">                        
+                            </div>
+                        </div> 
+                        <div class="pb-3">
+                            <button class="btn btn-success" type="submit"><i class="bi-floppy2"></i> Simpan</button>
+                        </div>
+                    </form-group>
+                </form>
+
                 <table class="table table-bordered mx-auto">
                     <thead>
                         <tr>
@@ -35,6 +87,8 @@
                             <th>Nama Barang</th>
                             <th>Merk</th>
                             <th>Tipe</th>
+                            <th>SN</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,7 +98,9 @@
                             <td>[barang.namaBarang]</td>
                             <td>[barang.merk]</td>
                             <td>[barang.tipe]</td>
-                            <td></td>
+                            <td>[barang.sn]</td>
+                            <td>[barang.status]</td>
+                            <td><button class="btn btn-sm btn-warning"><i class="bi-pencil-square"></i></button> <button class="btn btn-sm btn-danger"><i class="bi-trash"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
